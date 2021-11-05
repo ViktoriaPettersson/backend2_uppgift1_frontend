@@ -1,4 +1,4 @@
-.landingpage_color {
+.theme_color {
   background: #aa076b; /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to right,
@@ -10,4 +10,22 @@
     #61045f,
     #aa076b
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.nav-link {
+  position: relative;
+}
+a.nav-link.active::after {
+  content: "";
+  position: absolute;
+  border-bottom: 2px solid #dbece2;
+  left: 0.3rem;
+  right: 0.3rem;
+  top: 2rem;
+}
+.h1_color {
+  color: #aa076b !important;
+}
+.product_card,
+.product_image {
+  cursor: pointer;
 }

@@ -1,49 +1,62 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <div>
-      <nav className="navbar navbar-expand-lg navbar-dark elegant-color-dark">
-        <div className="container">
-          <a className="navbar-brand" href="/#">
+    <nav className="p-3 mb-1 navbar navbar-expand-lg navbar-dark theme_color">
+      <div className="container">
+        <div>
+          <NavLink to="/" className="navbar-brand font-weight-bold mr-5">
             React App
-          </a>
-
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#basicExampleNav"
-            aria-controls="basicExampleNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-
-          <div className="collapse navbar-collapse" id="basicExampleNav">
-            <ul className="navbar-nav mr-auto">
-              <li className="nav-item active">
-                <a className="nav-link" href="/#">
-                  Home
-                  <span className="sr-only">(current)</span>
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/#">
-                  Products
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/#">
-                  Create
-                </a>
-              </li>
-            </ul>
-          </div>
+          </NavLink>
         </div>
-      </nav>
-    </div>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent-333"
+          aria-controls="navbarSupportedContent-333"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+
+        <div
+          className="collapse navbar-collapse"
+          id="navbarSupportedContent-333"
+        >
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <NavLink to="/" className="nav-link">
+                Home
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink to="/products" className="nav-link">
+                Products
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink to="/create" className="nav-link">
+                Create
+              </NavLink>
+            </li>
+          </ul>
+          <ul className="navbar-nav ml-auto">
+            <li className="nav-item dropdown">
+              <span
+                className="nav-link"
+                id="navbarDropdownMenuLink-333"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              ></span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
   );
 };
 
