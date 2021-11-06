@@ -16,7 +16,7 @@ const Products = () => {
   // Körs direkt när komponenten laddas
   useEffect(() => {
     //kör funktionen
-    getProducts();
+    return getProducts();
   });
 
   return (

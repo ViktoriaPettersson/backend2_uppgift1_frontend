@@ -64,7 +64,7 @@ const Create = () => {
                   <option value="3">Tv</option>
                 </select>
                 <button
-                  class="btn btn-outline-light my-4 btn-block"
+                  className="btn btn-outline-light my-4 btn-block"
                   type="submit"
                 >
                   CREATE

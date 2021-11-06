@@ -1,49 +1,57 @@
-import React from "react";
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router";
 
-const ProductDetail = () => {
+const ProductDetail = ({}) => {
+  // console.log();
+  // Tomt object
+  const { id } = useParams();
+  const [product, setProduct] = useState({});
+  // Funktion som hämtar en produkt
+  const getOneProduct = async () => {
+    const res = await axios.get(`https://localhost:44323/api/Products/${id}`);
+    setProduct(res.data);
+  };
+  useEffect(() => {
+    return getOneProduct();
+  });
+
   return (
-    <div className="container my-5 py-2">
+    <div className="container my-5">
       <div className="mb-2">Products - Phone - Sony Headphones</div>
-      <div class="z-depth-1">
-        <section class="text-center">
-          <div class="row">
-            <div class="col-lg-6">
+      <div className="z-depth-1">
+        <section className="text-center">
+          <div className="row">
+            <div className="col-lg-6">
               <img
-                src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/17.jpg"
+                src={product.imageUrl}
                 alt="First slide"
-                class="img-fluid"
+                className="img-fluid px-3 mt-5 py-5"
               />
             </div>
 
-            <div class="col-lg-5 text-center text-md-left mt-5">
-              <h2 class="h2-responsive text-center text-md-left product-name font-weight-bold dark-grey-text mb-1 ml-xl-0 ml-4">
-                <strong>Sony headphones</strong>
+            <div className="col-lg-5 text-center text-md-left mt-5">
+              <h2 className="h2-responsive text-center text-md-left product-name font-weight-bold dark-grey-text mb-1 ml-xl-0 ml-4">
+                <strong>{product.productName}</strong>
               </h2>
-              <h3 class="h3-responsive text-center text-md-left mb-5 ml-xl-0 ml-4">
-                <span class=" font-weight-bold">
-                  <strong>$49</strong>
+              <h3 className="h3-responsive text-center text-md-left mb-5 ml-xl-0 ml-4">
+                <span className=" font-weight-bold">
+                  <strong>${product.price}</strong>
                 </span>
               </h3>
               <div>
                 <h3>Description</h3>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Vivamus sed tincidunt urna. Morbi tortor mauris, porta nec mi
-                  et, accumsan egestas quam. Vivamus ut nisi interdum,
-                  sollicitudin lectus at, lacinia augue. Aenean vel orci
-                  pretium, ultrices neque sed, sodales dui. Morbi mattis est sed
-                  hendrerit eleifend. Vestibulum in enim non turpis vulputate
-                  fermentum. Suspendisse at nisl quis felis tristique vestibulum
-                  tempor id lorem. Suspendisse nec erat quis tortor pharetra
-                  euismod. Donec hendrerit pharetra sagittis.
-                </p>
+                <p>{product.longDescription}</p>
               </div>
-              <section class="color">
-                <div class="mt-5">
-                  <div class="row mt-3">
-                    <div class="col-md-12 text-center text-md-left text-md-right">
-                      <button class="btn btn-outline theme_color btn-rounded text-white">
-                        <i class="fas fa-cart-plus mr-2" aria-hidden="true"></i>{" "}
+              <section className="color">
+                <div className="mt-5">
+                  <div className="row mt-3">
+                    <div className="col-md-12 text-center text-md-left text-md-right">
+                      <button className="btn btn-outline theme_color btn-rounded text-white mb-4">
+                        <i
+                          className="fas fa-cart-plus mr-2"
+                          aria-hidden="true"
+                        ></i>{" "}
                         Add to cart
                       </button>
                     </div>
