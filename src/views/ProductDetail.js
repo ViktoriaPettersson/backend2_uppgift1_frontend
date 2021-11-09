@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router";
 
 const ProductDetail = ({}) => {
-  // console.log();
   // Tomt object
   const { id } = useParams();
   const [product, setProduct] = useState({});
@@ -12,13 +11,48 @@ const ProductDetail = ({}) => {
     const res = await axios.get(`https://localhost:44323/api/Products/${id}`);
     setProduct(res.data);
   };
+
+  // Hämta subCategories för att lopa ut i rätt subCategory till en product
+  const [subCategories, setSubCategories] = useState([]);
+  // Funktion som hämtar produkter från databasen via WepApi
+  const getSubCategories = async () => {
+    const res = await axios.get("https://localhost:44323/api/SubCategories");
+    // hämtar upp produkterna sparar i products
+    const _subCategories = await res.data;
+    // skickar in i setProducts
+    setSubCategories(_subCategories);
+  };
+  // Hämta category för att lopa ut i rätt category till en product
+  const [categories, setCategories] = useState([]);
+  // Funktion som hämtar produkter från databasen via WepApi
+  const getCategories = async () => {
+    const res = await axios.get("https://localhost:44323/api/Categories");
+    // hämtar upp produkterna sparar i products
+    const _categories = await res.data;
+    // skickar in i setProducts
+    setCategories(_categories);
+  };
+
   useEffect(() => {
-    return getOneProduct();
-  });
+    getOneProduct(); // eslint-disable-next-line
+    getSubCategories(); // eslint-disable-next-line
+    getCategories(); // eslint-disable-next-line
+  }, []);
 
   return (
     <div className="container my-5">
-      <div className="mb-2">Products - Phone - Sony Headphones</div>
+      <div className="mb-2">
+        {categories.map((category) =>
+          category.id === product.subCategoryId ? category.categoryName : ""
+        )}{" "}
+        /{" "}
+        {subCategories.map((subCategory) =>
+          subCategory.id === product.subCategoryId
+            ? subCategory.subCategoryName
+            : ""
+        )}{" "}
+        / {product.productName}
+      </div>
       <div className="z-depth-1">
         <section className="text-center">
           <div className="row">

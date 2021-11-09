@@ -13,11 +13,12 @@ const Products = () => {
     // skickar in i setProducts
     setProducts(_products);
   };
+
   // Körs direkt när komponenten laddas
   useEffect(() => {
     //kör funktionen
-    return getProducts();
-  });
+    getProducts(); // eslint-disable-next-line
+  }, []);
 
   return (
     <div>
