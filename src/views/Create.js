@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Create = () => {
+  const navigate = useNavigate();
+
   // Lägga till en produkt i databasen
   const url = "https://localhost:44323/api/Products";
   const [data, setData] = React.useState({
@@ -27,6 +30,7 @@ const Create = () => {
       })
       .then((res) => {
         console.log(res.data);
+        navigate("/products");
       });
   };
   const handle = (e) => {
